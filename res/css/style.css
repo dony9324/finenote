@@ -282,6 +282,14 @@ ul.agile_forms li a {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+ul.agile_form2 li a {
+    background: #d73a00;
+    color: #fff;
+    font-size: 0.9em;
+    padding: 8px 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 ul.agile_forms li a:hover{
 	    background: #efb312;
 }

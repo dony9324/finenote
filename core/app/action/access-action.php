@@ -17,9 +17,11 @@ $userid = null;
 while($r = $query->fetch_array()){
 	$found = true ;
 	$userid = $r['id'];
+	$userkind = $r['kind'];
 }
 
 if($found==true) {
+	$_SESSION['kind']=$userkind ;
 	$_SESSION['user_id']=$userid ;
 	print "Cargando ... $user";
 	Core::redir("./?view=home");
@@ -27,7 +29,7 @@ if($found==true) {
 	Core::redir("./?view=login");
 }
 }else{
-	Core::redir("./?view=home");	
+	Core::redir("./?view=home");
 }
 
 }

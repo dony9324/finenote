@@ -2,12 +2,11 @@
 class Database {
 	public static $db;
 	public static $con;
-	function __construt(){
+	function __construct(){
 		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="finenote";
 	}
 
 	function connect(){
-		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="finenote";
 		$con = new mysqli($this->host,$this->user,$this->pass,$this->ddbb);
 		return $con;
 	}

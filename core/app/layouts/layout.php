@@ -12,6 +12,7 @@
   <link href="res/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
   <link rel="stylesheet" href="res/css/style.css" type="text/css" media="all" />
   <link href="res/css/font-awesome.css" rel="stylesheet">
+  <link href="res/images/favicon.ico" rel='icon' type='image/x-icon'/>
   <link href="//fonts.googleapis.com/css?family=Montserrat+Alternates:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="//fonts.googleapis.com/css?family=Libre+Franklin:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -30,11 +31,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <h1><a class="navbar-brand" href="index.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>Finenote</span></a></h1>
+          <h1><a class="navbar-brand" href="./"><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>Finenote</span></a></h1>
         </div>
-        <ul class="agile_forms">
-          <li><a class="active" href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-sign-in" aria-hidden="true"></i> Acceder</a> </li>
-        </ul>
+        <?php if(!(isset($_SESSION["user_id"]))):?>
+          <ul class="agile_forms">
+            <li><a class="active" href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-sign-in" aria-hidden="true"></i> Acceder</a> </li>
+          </ul>
+        <?php endif; ?>
+        <?php if((isset($_SESSION["user_id"]))):?>
+          <ul class="agile_forms  agile_form2">
+            <li><a class="active" href="./?action=access&amp;o=logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a> </li>
+
+          </ul>
+
+        <?php endif; ?>
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
           <div class="modal-dialog">
             <!-- Modal content-->
@@ -44,7 +54,7 @@
                 <div class="signin-form profile">
                   <h3 class="agileinfo_sign">Acceder</h3>
                   <div class="login-form">
-                    <form action="./?action=access&o=login" method="post" autocomplete="off">
+                    <form method="post" action="./?action=access&o=login" autocomplete="off">
                       <input type="text" name="username" placeholder="usuario" required="">
                       <input type="password" name="password" placeholder="Contraseña" required="">
                       <div class="tp">
@@ -64,10 +74,45 @@
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
           <nav>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/finenote" class="hvr-underline-from-center">Inicio</a></li>
-              <li><a href="#about"  class="scroll hvr-underline-from-center">Quienes somos</a></li>
-              <li><a href="#news" class="scroll hvr-underline-from-center">Noticias</a></li>
-              <li><a href="#contact" class=" scroll hvr-underline-from-center">Contactanos</a></li>
+              <?php if(!(isset($_SESSION["user_id"]))):?>
+                <li class="active"><a href="./" class="hvr-underline-from-center">Inicio</a></li>
+                <li><a href="#about"  class="scroll hvr-underline-from-center">Quienes somos</a></li>
+                <li><a href="#news" class="scroll hvr-underline-from-center">Noticias</a></li>
+                <li><a href="#contact" class=" scroll hvr-underline-from-center">Contactanos</a></li>
+              <?php endif; ?>
+              <?php if((isset($_SESSION["user_id"]))):
+                if((isset($_SESSION["kind"]))){
+
+                  switch ($_SESSION["kind"]) {
+                    case 0:
+                    echo "<li><a id='hom' href='?view=about'>Acerca de 0</a></li>";
+                    break;
+                    case 1:
+                    echo "<li><a id='hom' href='?view=about'>ciclo escolar</a></li>
+                    <li><a id='hom' href='?view=about'>alumnos</a></li>
+                    <li><a id='hom' href='?view=about'>profesores</a></li>
+                    <li><a id='hom' href='?view=about'>grupos</a></li>
+                    <li><a id='hom' href='?view=about'>materias</a></li>
+                    <li><a id='hom' href='?view=about'>calificaciones</a></li>";
+                    break;
+                    case 2:
+                    echo "<li><a id='hom' href='?view=about'>grupos</a></li>
+                    <li><a id='hom' href='?view=about'>mi perfil</a></li>";
+                    break;
+                    case 3:
+                    echo "<li><a id='hom' href='?view=about'>calificaciones</a></li>
+                    <li><a id='hom' href='?view=about'>mi perfil</a></li>";
+                    break;
+                    case 4:
+                    echo "<li><a id='hom' href='?view=about'>notas</a></li>
+                    <li><a id='hom' href='?view=about'>comportamiento</a></li>";
+                    break;
+                  }
+
+                }
+
+                ?>
+              <?php endif; ?>
             </ul>
           </nav>
 
