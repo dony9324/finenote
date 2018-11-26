@@ -1,24 +1,25 @@
 <?php
-class CategoryData {
-	public static $tablename = "category";
-	public static $schema = array(
-		"id"=>array("key"=>"ai","label"=>"","form"=>"hidden","required"=>"","actions"=>"edit"),
-		"name"=>array("label"=>"Nombre","form"=>"text","required"=>"","actions"=>"add,edit,view")
-	);
+class teacherData {
+	public static $tablename = "person";
 
-	public function CategoryData(){
+	public function teacherdata(){
+		$this->id = "";
 		$this->name = "";
 		$this->lastname = "";
-		$this->username = "";
 		$this->email = "";
-		$this->password = "";
+		$this->address = "";
+		$this->phone = "";
+		$this->identification = "";
+		$this->image = "";
+		$this->turo_id = "";
+		$this->kind = "";
+		$this->is_active = "";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
-		$fs = Crudadmin::prepareFields(self::$schema,"add");
-		$vs = Crudadmin::prepareValues(self::$schema,$this,"add");
-		$sql = Crudadmin::buildIFromFV(self::$tablename,$fs, $vs);
+		$sql = "insert into person (name, lastname, email, address, phone, identification, turo_id, created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->email\",\"$this->address\",\"$this->phone\",\"$this->identification\",\"$this->turo_id\",$this->created_at)";
 		Executor::doit($sql);
 	}
 
@@ -33,9 +34,7 @@ class CategoryData {
 	}
 
 	public function update(){
-		$fs = Crudadmin::prepareFields(self::$schema,"edit");
-		$vs = Crudadmin::prepareValues(self::$schema,$this,"edit");
-		$sql = Crudadmin::buildUFromFV(self::$tablename,$fs, $vs,$this->id);
+		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -52,32 +51,32 @@ class CategoryData {
 	public static function getById($id){
 		 $sql = "select * from ".self::$tablename." where id=$id";
 		$query = Executor::doit($sql);
-		return Model::one($query[0],new CategoryData());
+		return Model::one($query[0],new teacherData());
 	}
 
 	public static function getBy($k,$v){
 		$sql = "select * from ".self::$tablename." where $k=\"$v\"";
 		$query = Executor::doit($sql);
-		return Model::one($query[0],new CategoryData());
+		return Model::one($query[0],new teacherData());
 	}
 
 	public static function getAll(){
-		$sql = Crudadmin::buildS(self::$tablename,array("*"));
+		 $sql = "select * from ".self::$tablename;
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new CategoryData());
+		return Model::many($query[0],new teacherData());
 	}
 
 	public static function getAllBy($k,$v){
 		 $sql = "select * from ".self::$tablename." where $k=\"$v\"";
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new CategoryData());
+		return Model::many($query[0],new teacherData());
 	}
 
 
 	public static function getLike($q){
 		$sql = "select * from ".self::$tablename." where name like '%$q%'";
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new CategoryData());
+		return Model::many($query[0],new teacherData());
 	}
 
 

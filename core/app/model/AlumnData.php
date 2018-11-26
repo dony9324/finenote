@@ -1,19 +1,25 @@
 <?php
-class UserData {
-	public static $tablename = "user";
+class alumnData {
+	public static $tablename = "person";
 
-	public function Userdata(){
+	public function alumndata(){
+		$this->id = "";
 		$this->name = "";
 		$this->lastname = "";
-		$this->username = "";
 		$this->email = "";
-		$this->password = "";
+		$this->address = "";
+		$this->phone = "";
+		$this->identification = "";
+		$this->image = "";
+		$this->turo_id = "";
+		$this->kind = "";
+		$this->is_active = "";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
-		$sql = "insert into user (name,lastname,username,email,password,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
+		$sql = "insert into person (name, lastname, email, address, phone, identification, turo_id, created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->email\",\"$this->address\",\"$this->phone\",\"$this->identification\",\"$this->turo_id\",$this->created_at)";
 		Executor::doit($sql);
 	}
 
@@ -45,32 +51,32 @@ class UserData {
 	public static function getById($id){
 		 $sql = "select * from ".self::$tablename." where id=$id";
 		$query = Executor::doit($sql);
-		return Model::one($query[0],new UserData());
+		return Model::one($query[0],new alumnData());
 	}
 
 	public static function getBy($k,$v){
 		$sql = "select * from ".self::$tablename." where $k=\"$v\"";
 		$query = Executor::doit($sql);
-		return Model::one($query[0],new UserData());
+		return Model::one($query[0],new alumnData());
 	}
 
 	public static function getAll(){
 		 $sql = "select * from ".self::$tablename;
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new UserData());
+		return Model::many($query[0],new alumnData());
 	}
 
 	public static function getAllBy($k,$v){
 		 $sql = "select * from ".self::$tablename." where $k=\"$v\"";
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new UserData());
+		return Model::many($query[0],new alumnData());
 	}
 
 
 	public static function getLike($q){
 		$sql = "select * from ".self::$tablename." where name like '%$q%'";
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new UserData());
+		return Model::many($query[0],new alumnData());
 	}
 
 

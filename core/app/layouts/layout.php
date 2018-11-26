@@ -41,9 +41,7 @@
         <?php if((isset($_SESSION["user_id"]))):?>
           <ul class="agile_forms  agile_form2">
             <li><a class="active" href="./?action=access&amp;o=logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a> </li>
-
           </ul>
-
         <?php endif; ?>
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
           <div class="modal-dialog">
@@ -88,12 +86,11 @@
                     echo "<li><a id='hom' href='?view=about'>Acerca de 0</a></li>";
                     break;
                     case 1:
-                    echo "<li><a id='hom' href='?view=about'>ciclo escolar</a></li>
-                    <li><a id='hom' href='?view=about'>alumnos</a></li>
-                    <li><a id='hom' href='?view=about'>profesores</a></li>
-                    <li><a id='hom' href='?view=about'>grupos</a></li>
-                    <li><a id='hom' href='?view=about'>materias</a></li>
-                    <li><a id='hom' href='?view=about'>calificaciones</a></li>";
+                    echo "<li><a id='hom' href='?view=cycle&o=all'>ciclo escolar</a></li>
+                    <li><a id='hom' href='?view=alumn&o=all'>alumnos</a></li>
+                    <li><a id='hom' href='?view=teacher&o=all'>profesores</a></li>
+                    <li><a id='hom' href='?view=team&o=all'>grupos</a></li>
+                    <li><a id='hom' href='?view=subjects&o=all'>asignaturas</a></li>";
                     break;
                     case 2:
                     echo "<li><a id='hom' href='?view=about'>grupos</a></li>
@@ -108,9 +105,7 @@
                     <li><a id='hom' href='?view=about'>comportamiento</a></li>";
                     break;
                   }
-
                 }
-
                 ?>
               <?php endif; ?>
             </ul>
