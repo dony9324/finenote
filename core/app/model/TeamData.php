@@ -27,7 +27,8 @@ class teamData {
   }
 
   public function update(){
-    $sql = "update ".self::$tablename." set year=\"$this->year\",is_active=\"$this->is_active\" where id=$this->id";
+
+    $sql = "update ".self::$tablename." set name=\"$this->name\", is_favorite=\"$this->is_favorite\", step=\"$this->step\" where id=$this->id";
     Executor::doit($sql);
   }
 

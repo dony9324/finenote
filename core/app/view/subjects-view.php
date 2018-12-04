@@ -1,16 +1,14 @@
 <?php
-
 if(!isset($_SESSION["user_id"])){ Core::redir("./");}
 $user= UserData::getById($_SESSION["user_id"]);
 // si el id  del usuario no existe.
 if($user==null){ Core::redir("./");}
-
 if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 <section class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<h1>Lista de Asignaturas</h1>
-			<a href="index.php?view=Subjects&o=new" class="btn btn-default"><i class='glyphicon glyphicon-plus'></i> Nueva</a>
+			<a href="index.php?view=subjects&o=new" class="btn btn-default"><i class='glyphicon glyphicon-plus'></i> Nueva</a>
 			<br><br>
 			<?php
 			$users = subjectData::getAll();
@@ -21,30 +19,27 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 						<thead>
 							<th>Nombre</th>
 							<th></th>
+							<th></th>
 						</thead>
 						<?php
 						foreach($users as $user){
 							?>
 							<tr>
 								<td><?php echo $user->name; ?></td>
-									<td style="width:120px;">
+								<td>
 									<a href="index.php?view=Subjects&o=edit&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
+								</th>
+								<th>
 									<a href="index.php?action=Subjects&o=del&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
 								</td>
 							</tr>
 							<?php
-
 						}
 						echo "</table></div>";
-
 					}else{
 						?>
 						<p class="alert alert-warning">No hay usuarios.</p>
-						<?php
-					}
-
-					?>
-
+						<?php	}	?>
 				</div>
 			</div>
 		</section>
@@ -62,49 +57,22 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Apellido*</label>
-							<div class="col-md-6">
-								<input type="text" name="lastname" required class="form-control" id="lastname" placeholder="Apellido">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Nombre de usuario*</label>
-							<div class="col-md-6">
-								<input type="text" name="username" class="form-control" required id="username" placeholder="Nombre de usuario">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Email*</label>
-							<div class="col-md-6">
-								<input type="text" name="email" class="form-control" id="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Contrase&ntilde;a</label>
-							<div class="col-md-6">
-								<input type="password" name="password" class="form-control" id="inputEmail1" placeholder="Contrase&ntilde;a">
-							</div>
-						</div>
-						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
-								<button type="submit" class="btn btn-primary">Agregar Usuario</button>
+								<button type="submit" class="btn btn-primary">Guardar Asignatura</button>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</section>
-
 	<?php elseif(isset($_GET["o"]) && $_GET["o"]=="edit"):?>
 		<div class="container">
-			<?php $user = subjectsData::getById($_GET["id"]);?>
+			<?php $user = subjectData::getById($_GET["id"]);?>
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Editar Usuario</h1>
+					<h1>Editar Asignatura</h1>
 					<br>
 					<form class="form-horizontal" method="post" id="addproduct" action="index.php?action=Subjects&o=upd" role="form">
-
-
 						<div class="form-group">
 							<label for="inputEmail1" class="col-lg-2 control-label">Nombre*</label>
 							<div class="col-md-6">
@@ -112,36 +80,9 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Apellido*</label>
-							<div class="col-md-6">
-								<input type="text" name="lastname" value="<?php echo $user->lastname;?>" required class="form-control" id="lastname" placeholder="Apellido">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Nombre de usuario*</label>
-							<div class="col-md-6">
-								<input type="text" name="username" value="<?php echo $user->username;?>" class="form-control" required id="username" placeholder="Nombre de usuario">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Email*</label>
-							<div class="col-md-6">
-								<input type="text" name="email" value="<?php echo $user->email;?>" class="form-control" id="email" placeholder="Email">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Contrase&ntilde;a</label>
-							<div class="col-md-6">
-								<input type="password" name="password" class="form-control" id="inputEmail1" placeholder="Contrase&ntilde;a">
-								<p class="help-block">La contrase&ntilde;a solo se modificara si escribes algo, en caso contrario no se modifica.</p>
-							</div>
-						</div>
-
-						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
-								<input type="hidden" name="user_id" value="<?php echo $user->id;?>">
-								<button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+								<input type="hidden" name="id" value="<?php echo $user->id;?>">
+								<button type="submit" class="btn btn-primary">Actualizar</button>
 							</div>
 						</div>
 					</form>

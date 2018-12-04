@@ -1,6 +1,7 @@
-<?php 
+<?php
 // si el usuario no esta logeado
 if(!isset($_SESSION["user_id"])){ Core::redir("./");}
+ if(isset($_SESSION["onpass"])){ Core::redir("./?view=users&o=onpass&id=".$_SESSION["user_id"]);}
 $user= UserData::getById($_SESSION["user_id"]);
 // si el id  del usuario no existe.
 if($user==null){ Core::redir("./");}
@@ -8,25 +9,15 @@ if($user==null){ Core::redir("./");}
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<?php 
-if ($user->kind==1){
-?>
+  <br>
+
 <h2>Hola, <?php echo $user->name; ?></h2>
-<?php
-}
-?>
-<?php 
-if ($user->kind==2){
-?>
-<h2>Hola, <?php echo $user->name; ?> 2</h2>
-<?php
-}
-?>
-<p>Esta es una funcion de demostracion en la que se puede apreciar el login del usuario.</p>
+
+<p></p>
 </div>
 </div>
 </div>
-<!-- //modifica el menu del layau -->      
+<!-- //modifica el menu del layau -->
 <script>
 $( "#hom" ).last().addClass( "active" );
 $( "#home" ).last().addClass( "active" );

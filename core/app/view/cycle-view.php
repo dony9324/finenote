@@ -22,7 +22,6 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 							<th>Año</th>
 							<th>peiodos</th>
 							<th></th>
-							<th></th>
 						</thead>
 						<?php
 						foreach($users as $user){
@@ -33,9 +32,7 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 									<td style="width:120px;">
 									<a href="index.php?view=cycle&o=edit&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
 								</td>
-								<td style="width:120px;">
-								<a href="index.php?action=cycle&o=del&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
-							</td>
+
 							</tr>
 							<?php
 
@@ -90,7 +87,7 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 
 	<?php elseif(isset($_GET["o"]) && $_GET["o"]=="edit"):?>
 		<div class="container">
-			<?php $user = UserData::getById($_GET["id"]);?>
+			<?php $user = cycleData::getById($_GET["id"]);?>
 			<div class="row">
 				<div class="col-md-12">
 					<h1>Editar Usuario</h1>
@@ -99,40 +96,13 @@ if(isset($_GET["o"]) && $_GET["o"]=="all"):?>
 						<div class="form-group">
 							<label for="inputEmail1" class="col-lg-2 control-label">Nombre*</label>
 							<div class="col-md-6">
-								<input type="text" name="name" value="<?php echo $user->name;?>" class="form-control" id="name" placeholder="Nombre">
+								<input type="text" name="name" value="<?php echo $user->year;?>" class="form-control" id="name" placeholder="Nombre">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Apellido*</label>
-							<div class="col-md-6">
-								<input type="text" name="lastname" value="<?php echo $user->lastname;?>" required class="form-control" id="lastname" placeholder="Apellido">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Nombre de usuario*</label>
-							<div class="col-md-6">
-								<input type="text" name="username" value="<?php echo $user->username;?>" class="form-control" required id="username" placeholder="Nombre de usuario">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Email*</label>
-							<div class="col-md-6">
-								<input type="text" name="email" value="<?php echo $user->email;?>" class="form-control" id="email" placeholder="Email">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputEmail1" class="col-lg-2 control-label">Contrase&ntilde;a</label>
-							<div class="col-md-6">
-								<input type="password" name="password" class="form-control" id="inputEmail1" placeholder="Contrase&ntilde;a">
-								<p class="help-block">La contrase&ntilde;a solo se modificara si escribes algo, en caso contrario no se modifica.</p>
-							</div>
-						</div>
-
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 								<input type="hidden" name="user_id" value="<?php echo $user->id;?>">
-								<button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+								<button type="submit" class="btn btn-primary">Actualizar ciclo</button>
 							</div>
 						</div>
 					</form>

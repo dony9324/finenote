@@ -3,14 +3,14 @@ class subjectData {
 	public static $tablename = "subjects";
 	public function subjectData(){
 		$this->id = "";
-		$this->year = "";
-		$this->is_active = "";
+		$this->name = "";
+		$this->user_id = "";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
-		$sql = "insert into subjects (year,is_active,created_at) ";
-		$sql .= "value (\"$this->year\",\"$this->is_active\",$this->created_at)";
+		$sql = "insert into subjects (name,user_id,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->user_id\",$this->created_at)";
 		Executor::doit($sql);
 	}
 
@@ -25,7 +25,7 @@ class subjectData {
 	}
 
 	public function update(){
-		$sql = "update ".self::$tablename." set year=\"$this->year\",is_active=\"$this->is_active\" where id=$this->id";
+		$sql = "update ".self::$tablename." set name=\"$this->name\" where id=$this->id";
 		Executor::doit($sql);
 	}
 

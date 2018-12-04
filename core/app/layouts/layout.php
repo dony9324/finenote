@@ -87,13 +87,14 @@
                     break;
                     case 1:
                     echo "<li><a id='hom' href='?view=cycle&o=all'>ciclo escolar</a></li>
-                    <li><a id='hom' href='?view=alumn&o=all'>alumnos</a></li>
-                    <li><a id='hom' href='?view=teacher&o=all'>profesores</a></li>
                     <li><a id='hom' href='?view=team&o=all'>grupos</a></li>
+                    <li><a id='hom' href='?view=alumn&o=all'>alumnos</a></li>
+                    <li><a id='hom' href='?view=tutor&o=all'>acudientes</a></li>
+                    <li><a id='hom' href='?view=teacher&o=all'>profesores</a></li>
                     <li><a id='hom' href='?view=subjects&o=all'>asignaturas</a></li>";
                     break;
                     case 2:
-                    echo "<li><a id='hom' href='?view=about'>grupos</a></li>
+                    echo "<li><a id='hom' href='?view=teams'>grupos</a></li>
                     <li><a id='hom' href='?view=about'>mi perfil</a></li>";
                     break;
                     case 3:

@@ -3,17 +3,22 @@ class UserData {
 	public static $tablename = "user";
 
 	public function Userdata(){
+		$this->id = "";
 		$this->name = "";
-		$this->lastname = "";
 		$this->username = "";
-		$this->email = "";
 		$this->password = "";
+		$this->image = "";
+		$this->status = "";
+		$this->id_person = "";
+		$this->kind = "";
+		$this->user_id = $_SESSION["user_id"];
+		$this->onpass = "";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
-		$sql = "insert into user (name,lastname,username,email,password,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
+		$sql = "insert into user (name,username,password, id_person, kind, created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->username\",\"$this->password\",\"$this->id_person\",\"$this->kind\",$this->created_at)";
 		Executor::doit($sql);
 	}
 
@@ -29,6 +34,10 @@ class UserData {
 
 	public function update(){
 		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
+		Executor::doit($sql);
+	}
+	public function updateonpass(){
+		$sql = "update ".self::$tablename." set username=\"$this->username\", onpass = 1 where id=$this->id";
 		Executor::doit($sql);
 	}
 
